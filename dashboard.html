@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard — GymPro Bhubaneswar</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="css/dashboard.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+<div class="app">
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-head">
+      <div class="logo-icon"><i class="fas fa-dumbbell"></i></div>
+      <div class="logo-text">GymPro <small>Bhubaneswar</small></div>
+      <span class="chip" style="margin-left:auto;font-size:0.65rem">PATIA</span>
+    </div>
+    <div class="sidebar-role" id="sidebarRole">
+      <div class="role-badge"><i class="fas fa-shield-halved"></i></div>
+      <div class="role-info"><strong>Admin</strong><span>anuxoo001@gmail.com</span></div>
+    </div>
+    <nav class="nav" id="sideNav"></nav>
+    <div class="sidebar-foot">
+      <div class="user-mini">
+        <div class="avatar"><i class="fas fa-user"></i></div>
+        <div><strong id="footName" style="font-size:0.85rem">Admin</strong><br><span class="muted" style="font-size:0.7rem">81446 85376 • Patia</span></div>
+      </div>
+      <button class="btn-logout" onclick="logout()"><i class="fas fa-right-from-bracket"></i> Logout</button>
+    </div>
+  </aside>
+
+  <!-- Main -->
+  <div class="main">
+    <div class="topbar">
+      <div class="topbar-left">
+        <button class="hamburger2" id="ham2"><i class="fas fa-bars"></i></button>
+        <div>
+          <div class="page-title" id="pageTitle">Analytics Dashboard</div>
+          <div class="page-sub" id="pageSub">Welcome back • Patia, Bhubaneswar • 81446 85376</div>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <div class="search"><i class="fas fa-search"></i><input type="text" id="globalSearch" placeholder="Search members, trainers..."></div>
+        <button class="icon-btn" id="notifBtn"><i class="fas fa-bell"></i><span class="badge-dot" id="notifCount">3</span></button>
+        <button class="icon-btn" onclick="location.href='index.html'"><i class="fas fa-house"></i></button>
+      </div>
+    </div>
+
+    <div class="content" id="content">
+      <!-- ===== ADMIN PAGES ===== -->
+      <div class="page-section active" id="page-admin-overview">
+        <div class="kpis">
+          <div class="kpi"><div><h3>Total Members</h3><strong id="kpiMembers">0</strong><small>↑ 12% this month</small></div><div class="kpi-icon" style="background:rgba(255,77,0,0.12);color:var(--primary)"><i class="fas fa-users"></i></div></div>
+          <div class="kpi"><div><h3>Monthly Revenue</h3><strong id="kpiRevenue">₹0</strong><small>↑ 8% • GST inclusive</small></div><div class="kpi-icon" style="background:rgba(0,229,160,0.12);color:var(--secondary)"><i class="fas fa-indian-rupee-sign"></i></div></div>
+          <div class="kpi"><div><h3>Active Trainers</h3><strong id="kpiTrainers">0</strong><small>All certified</small></div><div class="kpi-icon" style="background:rgba(0,184,212,0.12);color:#00b8d4"><i class="fas fa-person-chalkboard"></i></div></div>
+          <div class="kpi"><div><h3>Today's Attendance</h3><strong id="kpiAttendance">0</strong><small>Live QR check-ins</small></div><div class="kpi-icon" style="background:rgba(255,193,7,0.12);color:#ffc107"><i class="fas fa-qrcode"></i></div></div>
+        </div>
+        <div class="grid2">
+          <div class="card"><div class="card-head"><h3>Revenue Analytics (₹)</h3><select id="revenueRange" style="padding:6px 10px;background:var(--dark3);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:0.8rem"><option>Last 7 Days</option><option>Last 30 Days</option></select></div><canvas id="revenueChart" height="140"></canvas></div>
+          <div class="card"><div class="card-head"><h3>Member Growth</h3><span class="chip">2025</span></div><canvas id="memberChart" height="140"></canvas></div>
+        </div>
+        <div class="grid2">
+          <div class="card"><div class="card-head"><h3>Recent Payments</h3><a href="#" onclick="switchPage('admin-payments')">View All</a></div><div class="table-wrap"><table><thead><tr><th>Invoice</th><th>Member</th><th>Plan</th><th>Amount</th><th>Status</th></tr></thead><tbody id="overviewPayments"></tbody></table></div></div>
+          <div class="card"><div class="card-head"><h3>Equipment Status</h3><a href="#" onclick="switchPage('admin-equipment')">Manage</a></div><div id="overviewEquipment"></div></div>
+        </div>
+      </div>
+
+      <div class="page-section" id="page-admin-members">
+        <div class="card-head"><h3>👥 Member Management</h3><button class="btn" onclick="openMemberModal()"><i class="fas fa-plus"></i> Add Member</button></div>
+        <div class="filters"><input type="text" id="memberSearch" placeholder="Search name, phone, id..."><select id="memberPlanFilter"><option value="">All Plans</option><option>Starter</option><option>Pro</option><option>Elite</option></select><select id="memberStatusFilter"><option value="">All Status</option><option>active</option><option>pending</option></select></div>
+        <div class="card"><div class="table-wrap"><table><thead><tr><th>ID</th><th>Name</th><th>Phone</th><th>Plan</th><th>Amount</th><th>Trainer</th><th>Joined</th><th>Status</th><th>Actions</th></tr></thead><tbody id="membersTable"></tbody></table></div></div>
+      </div>
+
+      <div class="page-section" id="page-admin-trainers">
+        <div class="card-head"><h3>👨‍🏫 Trainer Management</h3><button class="btn" onclick="openTrainerModal()"><i class="fas fa-plus"></i> Add Trainer</button></div>
+        <div class="card"><div class="table-wrap"><table><thead><tr><th>ID</th><th>Name</th><th>Specialty</th><th>Phone</th><th>Exp</th><th>Members</th><th>Status</th><th>Actions</th></tr></thead><tbody id="trainersTable"></tbody></table></div></div>
+      </div>
+
+      <div class="page-section" id="page-admin-payments">
+        <div class="card-head"><h3>💳 Membership & Payment Management</h3><button class="btn" onclick="openPaymentModal()"><i class="fas fa-plus"></i> Record Payment</button></div>
+        <div class="filters"><input type="text" id="paySearch" placeholder="Search member, invoice..."><select id="payStatusFilter"><option value="">All</option><option>paid</option><option>pending</option><option>overdue</option></select><button class="btn btn-outline btn-sm" onclick="exportPayments()"><i class="fas fa-file-csv"></i> Export CSV</button></div>
+        <div class="card"><div class="table-wrap"><table><thead><tr><th>Invoice</th><th>Member</th><th>Plan</th><th>Amount</th><th>Method</th><th>Date</th><th>Status</th><th>Invoice</th></tr></thead><tbody id="paymentsTable"></tbody></table></div></div>
+      </div>
+
+      <div class="page-section" id="page-admin-attendance">
+        <div class="grid2">
+          <div class="card"><h3>📱 QR-Based Attendance — Scan / Check-in</h3><p class="muted" style="margin:8px 0">Member shows QR at reception. Trainer/Admin enters Member ID to mark present.</p>
+            <div class="qr-box">
+              <div class="qr-card">
+                <div id="qrPreview" style="width:150px;height:150px;background:#fff;display:flex;align-items:center;justify-content:center;border-radius:8px;font-size:0.8rem;color:#111">QR Preview</div>
+                <p style="margin-top:8px;font-size:0.8rem">Member ID for QR</p><input type="text" id="qrMemberId" placeholder="M001" style="width:100%;margin-top:6px;padding:8px;border-radius:8px;border:1px solid var(--border);background:var(--dark3);color:#fff">
+                <button class="btn btn-sm" style="margin-top:8px;width:100%" onclick="generateQR()">Generate QR</button>
+              </div>
+              <div style="flex:1">
+                <div class="form-group"><label>Mark Attendance — Enter Member ID</label><input type="text" id="attMemberId" placeholder="e.g. M001"></div>
+                <button class="btn" onclick="markAttendance()"><i class="fas fa-qrcode"></i> Mark Present (QR Scan)</button>
+                <p class="muted" style="margin-top:10px">Today: <strong id="todayAttCount">0</strong> check-ins • Location: Patia, Bhubaneswar</p>
+                <div class="card" style="margin-top:12px;padding:12px"><strong>Member QR Code</strong><p class="muted">Each member has unique QR in their Member dashboard → Attendance tab. Scan simulation here.</p></div>
+              </div>
+            </div>
+          </div>
+          <div class="card"><div class="card-head"><h3>Today's Attendance</h3><span class="muted" id="attDate"></span></div><div class="table-wrap"><table><thead><tr><th>Time</th><th>Member</th><th>ID</th><th>Status</th></tr></thead><tbody id="attendanceTable"></tbody></table></div></div>
+        </div>
+        <div class="card" style="margin-top:16px"><div class="card-head"><h3>Attendance History</h3></div><div class="table-wrap"><table><thead><tr><th>Date</th><th>Member</th><th>Time</th></tr></thead><tbody id="attendanceHistory"></tbody></table></div></div>
+      </div>
+
+      <div class="page-section" id="page-admin-equipment">
+        <div class="card-head"><h3>🧰 Gym Equipment Management</h3><button class="btn" onclick="openEquipmentModal()"><i class="fas fa-plus"></i> Add Equipment</button></div>
+        <div class="card"><div class="table-wrap"><table><thead><tr><th>ID</th><th>Name</th><th>Category</th><th>Qty</th><th>Condition</th><th>Last Maintenance</th><th>Actions</th></tr></thead><tbody id="equipmentTable"></tbody></table></div></div>
+      </div>
+
+      <div class="page-section" id="page-admin-reports">
+        <div class="card-head"><h3>📈 Admin Analytics Dashboard</h3><button class="btn btn-outline btn-sm" onclick="printReport()"><i class="fas fa-print"></i> Print Report</button></div>
+        <div class="kpis">
+          <div class="kpi"><div><h3>Total Revenue (Aug)</h3><strong>₹1,24,500</strong><small>Paid: ₹1,10,000</small></div><div class="kpi-icon" style="background:rgba(0,229,160,0.12);color:var(--secondary)"><i class="fas fa-chart-line"></i></div></div>
+          <div class="kpi"><div><h3>Avg Attendance</h3><strong>84%</strong><small>Daily avg 42</small></div><div class="kpi-icon" style="background:rgba(255,193,7,0.12);color:#ffc107"><i class="fas fa-clock"></i></div></div>
+          <div class="kpi"><div><h3>Retention Rate</h3><strong>92%</strong><small>Elite highest</small></div><div class="kpi-icon" style="background:rgba(255,77,0,0.12);color:var(--primary)"><i class="fas fa-heart"></i></div></div>
+          <div class="kpi"><div><h3>Equipment Health</h3><strong>94%</strong><small>1 in maintenance</small></div><div class="kpi-icon" style="background:rgba(0,184,212,0.12);color:#00b8d4"><i class="fas fa-screwdriver-wrench"></i></div></div>
+        </div>
+        <div class="grid2">
+          <div class="card"><h3>Revenue vs Attendance</h3><canvas id="reportChart1" height="160"></canvas></div>
+          <div class="card"><h3>Plan Distribution</h3><canvas id="reportChart2" height="160"></canvas></div>
+        </div>
+        <div class="card" style="margin-top:16px"><h3>📄 Automatic Report — Monthly Summary</h3><p class="muted" style="margin:8px 0">Auto-generated report for Patia, Bhubaneswar — 751024 • Contact: 8144685376 • anuxoo001@gmail.com</p><div style="background:var(--dark3);padding:14px;border-radius:10px;font-size:0.85rem;line-height:1.7">
+          <strong>Month: August 2025</strong><br>
+          Total Members: 5 (Active 4, Pending 1) • New Joins: 1 • Trainers: 4<br>
+          Revenue Collected: ₹1,10,000 / Expected ₹1,24,500 • Pending: ₹14,500<br>
+          Attendance: 84% avg • Best Day: Monday (47 check-ins) • Equipment Uptime: 94%<br>
+          Top Performer: Elite plan (2 members) • Most Regular: Subham Sahoo (M001) — 28/31 days
+        </div></div>
+      </div>
+
+      <div class="page-section" id="page-admin-settings">
+        <div class="grid2">
+          <div class="card"><h3>🏢 Gym Settings — Patia, Bhubaneswar</h3>
+            <div class="form-group"><label>Gym Name</label><input type="text" value="GymPro Bhubaneswar"></div>
+            <div class="form-group"><label>Location</label><input type="text" value="Patia, Near KIIT, Infocity Road, Bhubaneswar 751024"></div>
+            <div class="form-row"><div class="form-group"><label>Phone</label><input type="text" value="+91 81446 85376"></div><div class="form-group"><label>Email</label><input type="text" value="anuxoo001@gmail.com"></div></div>
+            <div class="form-group"><label>GSTIN</label><input type="text" value="21ABCDE1234F1Z5"></div>
+            <button class="btn" onclick="showToast('Settings saved — Patia, Bhubaneswar ✅')">Save Settings</button>
+          </div>
+          <div class="card"><h3>💳 Membership Plans (₹)</h3><div class="table-wrap"><table><thead><tr><th>Plan</th><th>Monthly</th><th>Yearly</th></tr></thead><tbody><tr><td>Starter</td><td>₹999</td><td>₹9,999</td></tr><tr><td>Pro 🔥</td><td>₹1,999</td><td>₹17,999</td></tr><tr><td>Elite</td><td>₹3,499</td><td>₹31,999</td></tr></tbody></table></div><p class="muted" style="margin-top:10px">Edit via Membership settings — all prices GST inclusive.</p></div>
+        </div>
+      </div>
+
+      <!-- ===== TRAINER PAGES ===== -->
+      <div class="page-section" id="page-trainer-overview">
+        <div class="kpis">
+          <div class="kpi"><div><h3>My Members</h3><strong id="tKpiMembers">0</strong><small>Assigned to you</small></div><div class="kpi-icon" style="background:rgba(255,77,0,0.12);color:var(--primary)"><i class="fas fa-users"></i></div></div>
+          <div class="kpi"><div><h3>Pending Appointments</h3><strong id="tKpiAppt">0</strong><small>Confirm today</small></div><div class="kpi-icon" style="background:rgba(255,193,7,0.12);color:#ffc107"><i class="fas fa-calendar-check"></i></div></div>
+          <div class="kpi"><div><h3>Workout Plans Active</h3><strong id="tKpiWorkouts">0</strong><small>Created by you</small></div><div class="kpi-icon" style="background:rgba(0,229,160,0.12);color:var(--secondary)"><i class="fas fa-dumbbell"></i></div></div>
+          <div class="kpi"><div><h3>Diet Plans Active</h3><strong id="tKpiDiets">0</strong><small>Odia diet included</small></div><div class="kpi-icon" style="background:rgba(0,184,212,0.12);color:#00b8d4"><i class="fas fa-utensils"></i></div></div>
+        </div>
+        <div class="grid2">
+          <div class="card"><div class="card-head"><h3>My Members</h3><a href="#" onclick="switchPage('trainer-members')">View All</a></div><div class="table-wrap"><table><thead><tr><th>Member</th><th>Goal</th><th>Plan</th><th>Weight</th></tr></thead><tbody id="trainerMembersMini"></tbody></table></div></div>
+          <div class="card"><div class="card-head"><h3>Today's Appointments</h3><a href="#" onclick="switchPage('trainer-appointments')">Manage</a></div><div id="trainerApptMini"></div></div>
+        </div>
+      </div>
+
+      <div class="page-section" id="page-trainer-members">
+        <div class="card-head"><h3>👥 My Members</h3><span class="muted" id="trainerNameLabel"></span></div>
+        <div class="card"><div class="table-wrap"><table><thead><tr><th>Member ID</th><th>Name</th><th>Phone</th><th>Goal</th><th>Plan</th><th>Progress</th><th>Actions</th></tr></thead><tbody id="trainerMembersTable"></tbody></table></div></div>
+      </div>
+
+      <div class="page-section" id="page-trainer-workouts">
+        <div class="card-head"><h3>🏋️ Workout Plan Management</h3><button class="btn" onclick="openWorkoutModal()"><i class="fas fa-plus"></i> Create Workout Plan</button></div>
+        <div class="filters"><input type="text" id="workoutSearch" placeholder="Search member..."><button class="btn btn-outline btn-sm" onclick="aiWorkout()"><i class="fas fa-robot"></i> 🤖 AI Generate</button></div>
+        <div class="card"><div class="table-wrap"><table><thead><tr><th>Plan</th><th>Member</th><th>Exercises</th><th>Date</th><th>Status</th><th>Actions</th></tr></thead><tbody id="workoutsTable"></tbody></table></div></div>
+      </div>
+
+      <div class="page-section" id="page-trainer-diets">
+        <div class="card-head"><h3>🥗 Diet & Nutrition Management</h3><button class="btn" onclick="openDietModal()"><i class="fas fa-plus"></i> Create Diet Plan</button></div>
+        <div class="filters"><input type="text" id="dietSearch" placeholder="Search member..."><button class="btn btn-outline btn-sm" onclick="aiDiet()"><i class="fas fa-robot"></i> 🤖 AI Generate</button></div>
+        <div class="card"><div class="table-wrap"><table><thead><tr><th>Plan</th><th>Member</th><th>Calories</th><th>Meals</th><th>Actions</th></tr></thead><tbody id="dietsTable"></tbody></table></div></div>
+      </div>
+
+      <div class="page-section" id="page-trainer-appointments">
+        <div class="card-head"><h3>📅 Appointments</h3><span class="muted">Confirm / Reschedule member bookings</span></div>
+        <div class="card"><div class="table-wrap"><table><thead><tr><th>Date</th><th>Time</th><th>Member</th><th>Type</th><th>Status</th><th>Actions</th></tr></thead><tbody id="trainerApptTable"></tbody></table></div></div>
+      </div>
+
+      <div class="page-section" id="page-trainer-progress">
+        <div class="card-head"><h3>📊 Fitness Progress Tracking — My Members</h3></div>
+        <div class="card"><div class="filters"><select id="progressMemberSelect"></select><button class="btn btn-outline btn-sm" onclick="renderTrainerProgress()"><i class="fas fa-chart-line"></i> View</button></div><canvas id="trainerProgressChart" height="120"></canvas><div id="trainerProgressLog" style="margin-top:14px"></div></div>
+      </div>
+
+      <!-- ===== MEMBER PAGES ===== -->
+      <div class="page-section" id="page-member-overview">
+        <div class="kpis">
+          <div class="kpi"><div><h3>My Plan</h3><strong id="mPlan">Pro</strong><small id="mPlanPrice">₹1,999/mo</small></div><div class="kpi-icon" style="background:rgba(255,77,0,0.12);color:var(--primary)"><i class="fas fa-crown"></i></div></div>
+          <div class="kpi"><div><h3>Attendance</h3><strong id="mAtt">0</strong><small id="mAttPct">This month</small></div><div class="kpi-icon" style="background:rgba(0,229,160,0.12);color:var(--secondary)"><i class="fas fa-qrcode"></i></div></div>
+          <div class="kpi"><div><h3>Current Weight</h3><strong id="mWeight">0 kg</strong><small id="mWeightChange">Track progress</small></div><div class="kpi-icon" style="background:rgba(0,184,212,0.12);color:#00b8d4"><i class="fas fa-weight-scale"></i></div></div>
+          <div class="kpi"><div><h3>Goal Progress</h3><strong id="mGoalPct">0%</strong><small id="mGoalTitle">Set your goal</small></div><div class="kpi-icon" style="background:rgba(255,193,7,0.12);color:#ffc107"><i class="fas fa-trophy"></i></div></div>
+        </div>
+        <div class="grid2">
+          <div class="card"><div class="card-head"><h3>🏋️ My Workout Plan</h3><a href="#" onclick="switchPage('member-workout')">View All</a></div><div id="memberWorkoutMini"></div>
+            <div class="ai-box" style="margin-top:12px"><strong><i class="fas fa-robot"></i> 🤖 AI Workout & Diet Recommendations</strong><p class="muted" style="margin:6px 0">Get personalized plan based on your goal, weight, and progress.</p><div class="filters"><select id="aiGoal"><option>Weight Loss</option><option>Muscle Gain</option><option>Strength Training</option><option>General Fitness</option></select><button class="btn btn-sm" onclick="memberAI()"><i class="fas fa-wand-magic-sparkles"></i> Generate</button></div><div id="aiResult" style="margin-top:10px;font-size:0.85rem"></div></div>
+          </div>
+          <div class="card"><div class="card-head"><h3>🥗 My Diet Plan</h3><a href="#" onclick="switchPage('member-diet')">View</a></div><div id="memberDietMini"></div>
+            <div class="card" style="margin-top:12px;background:var(--dark3)"><strong>📅 Next Appointment</strong><div id="memberNextAppt" class="muted" style="margin-top:6px">No appointment — <a href="#" onclick="switchPage('member-appointments')" style="color:var(--primary)">Book Now</a></div></div>
+          </div>
+        </div>
+        <div class="card" style="margin-top:16px"><div class="card-head"><h3>🏆 Fitness Goals & Achievements</h3><button class="btn btn-sm" onclick="openGoalModal()"><i class="fas fa-plus"></i> Add Goal</button></div><div id="memberGoals"></div></div>
+      </div>
+
+      <div class="page-section" id="page-member-profile">
+        <div class="grid2">
+          <div class="card"><h3>👤 My Profile</h3><div id="profileCard"></div>
+            <div class="qr-card" style="margin-top:14px"><strong>📱 My QR Code — For Attendance</strong><p class="muted" style="font-size:0.8rem">Show this at Patia reception to mark attendance</p><div id="memberQR" style="margin:12px auto;width:150px;height:150px;background:#fff;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#111">QR</div><p id="memberQRId" class="muted" style="text-align:center"></p></div>
+          </div>
+          <div class="card"><h3>Edit Profile</h3><div class="form-group"><label>Name</label><input type="text" id="editName"></div><div class="form-group"><label>Phone</label><input type="text" id="editPhone"></div><div class="form-group"><label>Email</label><input type="text" id="editEmail"></div><div class="form-group"><label>Goal</label><select id="editGoal"><option>Weight Loss</option><option>Muscle Gain</option><option>Strength Training</option><option>General Fitness</option><option>Yoga & Flexibility</option></select></div><button class="btn" onclick="saveProfile()"><i class="fas fa-save"></i> Save Profile</button></div>
+        </div>
+      </div>
+
+      <div class="page-section" id="page-member-workout"><div class="card-head"><h3>🏋️ My Workout Plans</h3></div><div class="card"><div class="table-wrap"><table><thead><tr><th>Title</th><th>Trainer</th><th>Exercises</th><th>Date</th></tr></thead><tbody id="memberWorkoutTable"></tbody></table></div></div></div>
+      <div class="page-section" id="page-member-diet"><div class="card-head"><h3>🥗 My Diet Plans — Odia Friendly</h3></div><div class="card"><div class="table-wrap"><table><thead><tr><th>Title</th><th>Trainer</th><th>Calories</th><th>Meals</th></tr></thead><tbody id="memberDietTable"></tbody></table></div></div></div>
+      <div class="page-section" id="page-member-attendance">
+        <div class="card-head"><h3>📱 My Attendance — QR Based</h3><button class="btn btn-sm" onclick="memberCheckIn()"><i class="fas fa-qrcode"></i> Quick Check-In (Demo)</button></div>
+        <div class="grid2"><div class="card"><h3>QR Check-In</h3><div class="qr-card" style="max-width:220px;margin:14px auto"><div id="memberQR2" style="width:150px;height:150px;background:#fff;border-radius:8px;margin:0 auto;display:flex;align-items:center;justify-content:center;color:#111">QR</div><p id="memberQRId2" class="muted" style="text-align:center;margin-top:8px"></p><p class="muted" style="font-size:0.75rem;text-align:center">Scan at Patia reception • 81446 85376</p></div></div><div class="card"><div class="card-head"><h3>History</h3><span class="muted" id="memberAttStats"></span></div><div class="table-wrap"><table><thead><tr><th>Date</th><th>Time</th><th>Status</th></tr></thead><tbody id="memberAttTable"></tbody></table></div></div></div>
+      </div>
+      <div class="page-section" id="page-member-payments">
+        <div class="card-head"><h3>💳 My Payments — Membership</h3><button class="btn btn-outline btn-sm" onclick="requestInvoice()"><i class="fas fa-file-invoice"></i> Request Invoice</button></div>
+        <div class="card"><div class="table-wrap"><table><thead><tr><th>Invoice</th><th>Plan</th><th>Amount</th><th>Method</th><th>Date</th><th>Status</th><th>Download</th></tr></thead><tbody id="memberPaymentsTable"></tbody></table></div></div>
+      </div>
+      <div class="page-section" id="page-member-progress">
+        <div class="card-head"><h3>📊 Fitness Progress Tracking</h3><button class="btn" onclick="openProgressModal()"><i class="fas fa-plus"></i> Log Progress</button></div>
+        <div class="card"><canvas id="memberProgressChart" height="120"></canvas></div>
+        <div class="grid2" style="margin-top:16px"><div class="card"><h3>Progress Log</h3><div class="table-wrap"><table><thead><tr><th>Date</th><th>Weight</th><th>Body Fat</th><th>Notes</th></tr></thead><tbody id="memberProgressTable"></tbody></table></div></div><div class="card"><div class="card-head"><h3>🏆 Goals & Achievements</h3><button class="btn btn-sm" onclick="openGoalModal()"><i class="fas fa-plus"></i> Add</button></div><div id="memberGoals2"></div><button class="btn btn-outline btn-sm" style="margin-top:10px;width:100%" onclick="generateProgressReport()"><i class="fas fa-file-pdf"></i> 📄 Generate Progress Report (PDF)</button></div></div>
+      </div>
+      <div class="page-section" id="page-member-appointments">
+        <div class="card-head"><h3>📅 Appointment Booking</h3><button class="btn" onclick="openAppointmentModal()"><i class="fas fa-plus"></i> Book Appointment</button></div>
+        <div class="card"><div class="table-wrap"><table><thead><tr><th>Date</th><th>Time</th><th>Trainer</th><th>Type</th><th>Status</th></tr></thead><tbody id="memberApptTable"></tbody></table></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Notifications Panel -->
+<div class="notif-panel" id="notifPanel">
+  <div style="padding:12px 14px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center"><strong>🔔 Notifications</strong><button class="btn btn-ghost btn-sm" onclick="markAllRead()">Mark all read</button></div>
+  <div id="notifList"></div>
+  <div style="padding:10px;text-align:center"><button class="btn btn-outline btn-sm" onclick="clearNotifs()">Clear All</button></div>
+</div>
+
+<!-- Modals -->
+<div class="modal" id="memberModal"><div class="modal-card"><div class="modal-head"><h3 id="memberModalTitle">Add Member</h3><button class="close-btn" onclick="closeModal('memberModal')"><i class="fas fa-times"></i></button></div><form id="memberForm"><input type="hidden" id="mId"><div class="form-row"><div class="form-group"><label>Name *</label><input type="text" id="mName" required></div><div class="form-group"><label>Phone *</label><input type="text" id="mPhone" required></div></div><div class="form-group"><label>Email</label><input type="email" id="mEmail"></div><div class="form-row"><div class="form-group"><label>Plan *</label><select id="mPlanSel"><option>Starter</option><option selected>Pro</option><option>Elite</option></select></div><div class="form-group"><label>Trainer</label><select id="mTrainerSel"></select></div></div><div class="form-group"><label>Goal</label><input type="text" id="mGoalInp" placeholder="Weight Loss"></div><button type="submit" class="btn" style="width:100%">Save Member</button></form></div></div>
+
+<div class="modal" id="trainerModal"><div class="modal-card"><div class="modal-head"><h3 id="trainerModalTitle">Add Trainer</h3><button class="close-btn" onclick="closeModal('trainerModal')"><i class="fas fa-times"></i></button></div><form id="trainerForm"><input type="hidden" id="tId"><div class="form-group"><label>Name *</label><input type="text" id="tName" required></div><div class="form-group"><label>Specialty *</label><input type="text" id="tSpecialty" placeholder="Strength & Bodybuilding"></div><div class="form-row"><div class="form-group"><label>Phone *</label><input type="text" id="tPhone" required></div><div class="form-group"><label>Experience</label><input type="text" id="tExp" placeholder="10+ Yrs"></div></div><div class="form-group"><label>Certification</label><input type="text" id="tCert"></div><button type="submit" class="btn" style="width:100%">Save Trainer</button></form></div></div>
+
+<div class="modal" id="paymentModal"><div class="modal-card"><div class="modal-head"><h3>Record Payment</h3><button class="close-btn" onclick="closeModal('paymentModal')"><i class="fas fa-times"></i></button></div><form id="paymentForm"><div class="form-group"><label>Member *</label><select id="pMember" required></select></div><div class="form-row"><div class="form-group"><label>Plan</label><select id="pPlan"><option>Starter</option><option>Pro</option><option>Elite</option></select></div><div class="form-group"><label>Amount (₹) *</label><input type="number" id="pAmount" required></div></div><div class="form-row"><div class="form-group"><label>Method</label><select id="pMethod"><option>UPI</option><option>Cash</option><option>Card</option><option>Net Banking</option></select></div><div class="form-group"><label>Status</label><select id="pStatus"><option>paid</option><option>pending</option><option>overdue</option></select></div></div><button type="submit" class="btn" style="width:100%">Save Payment & Generate Invoice</button></form></div></div>
+
+<div class="modal" id="workoutModal"><div class="modal-card"><div class="modal-head"><h3>Create Workout Plan</h3><button class="close-btn" onclick="closeModal('workoutModal')"><i class="fas fa-times"></i></button></div><form id="workoutForm"><div class="form-group"><label>Member *</label><select id="wMember" required></select></div><div class="form-group"><label>Plan Title *</label><input type="text" id="wTitle" placeholder="Fat Burn HIIT" required></div><div class="form-group"><label>Exercises (comma separated: Name - sets x reps)</label><textarea id="wExercises" rows="3" placeholder="Burpees - 4x15, Jump Squats - 3x12, Plank - 3x60s"></textarea></div><button type="submit" class="btn" style="width:100%">Assign to Member</button></form></div></div>
+
+<div class="modal" id="dietModal"><div class="modal-card"><div class="modal-head"><h3>Create Diet Plan</h3><button class="close-btn" onclick="closeModal('dietModal')"><i class="fas fa-times"></i></button></div><form id="dietForm"><div class="form-group"><label>Member *</label><select id="dMember" required></select></div><div class="form-group"><label>Title *</label><input type="text" id="dTitle" placeholder="Weight Loss 1800kcal" required></div><div class="form-row"><div class="form-group"><label>Calories</label><input type="number" id="dCalories" placeholder="1800"></div><div class="form-group"><label>Type</label><select id="dType"><option>Veg</option><option>Non-Veg</option><option>Odia Mix</option></select></div></div><div class="form-group"><label>Meals (one per line: Time - Food)</label><textarea id="dMeals" rows="4" placeholder="8AM - Oats + Papaya&#10;1PM - Brown Rice + Dalma&#10;8PM - Chapati 2 + Chicken"></textarea></div><button type="submit" class="btn" style="width:100%">Assign Diet Plan</button></form></div></div>
+
+<div class="modal" id="equipmentModal"><div class="modal-card"><div class="modal-head"><h3>Add Equipment</h3><button class="close-btn" onclick="closeModal('equipmentModal')"><i class="fas fa-times"></i></button></div><form id="equipmentForm"><input type="hidden" id="eId"><div class="form-group"><label>Name *</label><input type="text" id="eName" required></div><div class="form-row"><div class="form-group"><label>Category</label><select id="eCat"><option>Cardio</option><option>Strength</option><option>Functional</option><option>Flexibility</option></select></div><div class="form-group"><label>Quantity</label><input type="number" id="eQty" value="1"></div></div><div class="form-row"><div class="form-group"><label>Condition</label><select id="eCond"><option>working</option><option>maintenance</option></select></div><div class="form-group"><label>Last Maintenance</label><input type="date" id="eLast"></div></div><button type="submit" class="btn" style="width:100%">Save Equipment</button></form></div></div>
+
+<div class="modal" id="progressModal"><div class="modal-card"><div class="modal-head"><h3>Log Progress</h3><button class="close-btn" onclick="closeModal('progressModal')"><i class="fas fa-times"></i></button></div><form id="progressForm"><div class="form-row"><div class="form-group"><label>Date</label><input type="date" id="prDate" required></div><div class="form-group"><label>Weight (kg)</label><input type="number" id="prWeight" step="0.1" required></div></div><div class="form-group"><label>Body Fat %</label><input type="number" id="prFat" step="0.1"></div><div class="form-group"><label>Notes</label><textarea id="prNotes" rows="2" placeholder="Feeling stronger..."></textarea></div><button type="submit" class="btn" style="width:100%">Save Progress</button></form></div></div>
+
+<div class="modal" id="goalModal"><div class="modal-card"><div class="modal-head"><h3>Add Goal</h3><button class="close-btn" onclick="closeModal('goalModal')"><i class="fas fa-times"></i></button></div><form id="goalForm"><div class="form-group"><label>Goal Title *</label><input type="text" id="gTitle" placeholder="Lose 10kg" required></div><div class="form-row"><div class="form-group"><label>Target</label><input type="number" id="gTarget" placeholder="10" required></div><div class="form-group"><label>Current</label><input type="number" id="gCurrent" placeholder="3" value="0"></div></div><div class="form-group"><label>Deadline</label><input type="date" id="gDeadline"></div><button type="submit" class="btn" style="width:100%">Add Goal</button></form></div></div>
+
+<div class="modal" id="appointmentModal"><div class="modal-card"><div class="modal-head"><h3>Book Appointment</h3><button class="close-btn" onclick="closeModal('appointmentModal')"><i class="fas fa-times"></i></button></div><form id="appointmentForm"><div class="form-group"><label>Trainer *</label><select id="apTrainer" required></select></div><div class="form-row"><div class="form-group"><label>Date *</label><input type="date" id="apDate" required></div><div class="form-group"><label>Time *</label><input type="time" id="apTime" required></div></div><div class="form-group"><label>Type</label><select id="apType"><option>PT Session</option><option>Yoga</option><option>Diet Consultation</option><option>General</option></select></div><button type="submit" class="btn" style="width:100%">Book Now</button></form></div></div>
+
+<div class="modal" id="invoiceModal"><div class="modal-card" style="max-width:600px"><div class="modal-head"><h3>Invoice</h3><button class="close-btn" onclick="closeModal('invoiceModal')"><i class="fas fa-times"></i></button></div><div id="invoiceContent" class="invoice"></div><button class="btn" style="width:100%;margin-top:12px" onclick="printInvoice()"><i class="fas fa-print"></i> Print / Save PDF</button></div></div>
+
+<div class="toast" id="toast" style="position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(80px);background:#00e5a0;color:#0a0a0f;padding:12px 20px;border-radius:50px;font-weight:700;font-size:0.85rem;opacity:0;transition:all 0.3s;z-index:300">Done</div>
+
+<script src="js/app.js"></script>
+<script src="js/dashboard.js"></script>
+</body>
+</html>
