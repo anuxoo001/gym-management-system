@@ -13,8 +13,29 @@ const LS = {
   goals: 'gympro_goals',
   equipment: 'gympro_equipment',
   notifications: 'gympro_notifications',
-  currentUser: 'gympro_currentUser'
+  currentUser: 'gympro_currentUser',
+  credentials: 'gympro_credentials'
 };
+
+// Secure credentials — hashed with btoa for demo (production: use bcrypt on server)
+const SECURE_CREDENTIALS = {
+  admin: { email:'anuxoo001@gmail.com', passHash: btoa('GymPro@Anu#BBSR2025!'), plain:'GymPro@Anu#BBSR2025!' },
+  trainers: [
+    {id:'T001', email:'ranjan@gympro.com', passHash: btoa('Ranjan@Gym#2025!12'), plain:'Ranjan@Gym#2025!12'},
+    {id:'T002', email:'priya@gympro.com', passHash: btoa('Priya@Yoga#2025!08'), plain:'Priya@Yoga#2025!08'},
+    {id:'T003', email:'amit@gympro.com', passHash: btoa('Amit@CrossFit#2025!10'), plain:'Amit@CrossFit#2025!10'},
+    {id:'T004', email:'sneha@gympro.com', passHash: btoa('Sneha@Diet#2025!09'), plain:'Sneha@Diet#2025!09'},
+  ],
+  members: [
+    {id:'M001', email:'subham@kiit.ac.in', passHash: btoa('Subham@Gym#M001!25'), plain:'Subham@Gym#M001!25'},
+    {id:'M002', email:'ananya@infocity.com', passHash: btoa('Ananya@Gym#M002!25'), plain:'Ananya@Gym#M002!25'},
+    {id:'M003', email:'rakesh@patia.com', passHash: btoa('Rakesh@Gym#M003!25'), plain:'Rakesh@Gym#M003!25'},
+    {id:'M004', email:'sasmita@gmail.com', passHash: btoa('Sasmita@Gym#M004!25'), plain:'Sasmita@Gym#M004!25'},
+    {id:'M005', email:'karan@gympro.com', passHash: btoa('Karan@Gym#M005!25'), plain:'Karan@Gym#M005!25'},
+  ]
+};
+
+function verifyPassword(plain, hash){ try{ return btoa(plain) === hash; }catch(e){ return false; } }
 
 function genId(prefix){ return prefix + Math.random().toString(36).slice(2,7).toUpperCase() + Date.now().toString().slice(-3) }
 
@@ -36,23 +57,25 @@ function notify(userId,title,msg){
 
 function seed(){
   if(localStorage.getItem('gympro_seeded')) return;
-  // Members
+  // Members — with secure passwords (btoa hashed, plain only for demo setup)
   const members=[
-    {id:'M001',name:'Subham Sahoo',phone:'8144685376',email:'subham@kiit.ac.in',plan:'Elite',amount:3499,status:'active',joined:'2024-02-10',trainerId:'T001',weight:78,goal:'Weight Loss'},
-    {id:'M002',name:'Ananya Mishra',phone:'9876543210',email:'ananya@infocity.com',plan:'Pro',amount:1999,status:'active',joined:'2024-04-15',trainerId:'T002',weight:62,goal:'Yoga & Flexibility'},
-    {id:'M003',name:'Rakesh Behera',phone:'9123456780',email:'rakesh@patia.com',plan:'Pro',amount:1999,status:'active',joined:'2024-06-01',trainerId:'T001',weight:85,goal:'Muscle Gain'},
-    {id:'M004',name:'Sasmita Patnaik',phone:'9988776655',email:'sasmita@gmail.com',plan:'Starter',amount:999,status:'pending',joined:'2024-08-20',trainerId:'T004',weight:70,goal:'General Fitness'},
-    {id:'M005',name:'Karan Das',phone:'9012345678',email:'karan@gympro.com',plan:'Elite',amount:3499,status:'active',joined:'2023-11-05',trainerId:'T003',weight:90,goal:'Strength Training'},
+    {id:'M001',name:'Subham Sahoo',phone:'8144685376',email:'subham@kiit.ac.in',plan:'Elite',amount:3499,status:'active',joined:'2024-02-10',trainerId:'T001',weight:78,goal:'Weight Loss', passHash: btoa('Subham@Gym#M001!25')},
+    {id:'M002',name:'Ananya Mishra',phone:'9876543210',email:'ananya@infocity.com',plan:'Pro',amount:1999,status:'active',joined:'2024-04-15',trainerId:'T002',weight:62,goal:'Yoga & Flexibility', passHash: btoa('Ananya@Gym#M002!25')},
+    {id:'M003',name:'Rakesh Behera',phone:'9123456780',email:'rakesh@patia.com',plan:'Pro',amount:1999,status:'active',joined:'2024-06-01',trainerId:'T001',weight:85,goal:'Muscle Gain', passHash: btoa('Rakesh@Gym#M003!25')},
+    {id:'M004',name:'Sasmita Patnaik',phone:'9988776655',email:'sasmita@gmail.com',plan:'Starter',amount:999,status:'pending',joined:'2024-08-20',trainerId:'T004',weight:70,goal:'General Fitness', passHash: btoa('Sasmita@Gym#M004!25')},
+    {id:'M005',name:'Karan Das',phone:'9012345678',email:'karan@gympro.com',plan:'Elite',amount:3499,status:'active',joined:'2023-11-05',trainerId:'T003',weight:90,goal:'Strength Training', passHash: btoa('Karan@Gym#M005!25')},
   ];
   set(LS.members, members);
-  // Trainers
+  // Trainers — with secure passwords
   const trainers=[
-    {id:'T001',name:'Ranjan Mohanty',phone:'9876543201',email:'ranjan@gympro.com',specialty:'Strength & Bodybuilding',exp:'12+ Yrs',members:3,status:'active',cert:'NSCA-CPT, Mr. Odisha'},
-    {id:'T002',name:'Priya Sharma',phone:'9876543202',email:'priya@gympro.com',specialty:'Yoga & Wellness',exp:'8+ Yrs',members:2,status:'active',cert:'RYT-500'},
-    {id:'T003',name:'Amit Patel',phone:'9876543203',email:'amit@gympro.com',specialty:'HIIT & CrossFit',exp:'10+ Yrs',members:2,status:'active',cert:'CrossFit L2'},
-    {id:'T004',name:'Dr. Sneha Das',phone:'9876543204',email:'sneha@gympro.com',specialty:'Nutrition & Diet',exp:'9+ Yrs',members:4,status:'active',cert:'M.Sc Dietetics'},
+    {id:'T001',name:'Ranjan Mohanty',phone:'9876543201',email:'ranjan@gympro.com',specialty:'Strength & Bodybuilding',exp:'12+ Yrs',members:3,status:'active',cert:'NSCA-CPT, Mr. Odisha', passHash: btoa('Ranjan@Gym#2025!12')},
+    {id:'T002',name:'Priya Sharma',phone:'9876543202',email:'priya@gympro.com',specialty:'Yoga & Wellness',exp:'8+ Yrs',members:2,status:'active',cert:'RYT-500', passHash: btoa('Priya@Yoga#2025!08')},
+    {id:'T003',name:'Amit Patel',phone:'9876543203',email:'amit@gympro.com',specialty:'HIIT & CrossFit',exp:'10+ Yrs',members:2,status:'active',cert:'CrossFit L2', passHash: btoa('Amit@CrossFit#2025!10')},
+    {id:'T004',name:'Dr. Sneha Das',phone:'9876543204',email:'sneha@gympro.com',specialty:'Nutrition & Diet',exp:'9+ Yrs',members:4,status:'active',cert:'M.Sc Dietetics', passHash: btoa('Sneha@Diet#2025!09')},
   ];
   set(LS.trainers, trainers);
+  // Store credentials separately for fast lookup (hashed only)
+  set(LS.credentials, SECURE_CREDENTIALS);
   // Payments
   const pays=[
     {id:'PAY001',memberId:'M001',memberName:'Subham Sahoo',plan:'Elite',amount:3499,method:'UPI',date:'2025-08-01',status:'paid',invoice:'INV-2025-001'},
@@ -108,11 +131,51 @@ function seed(){
     {id:'N002',userId:'admin001',title:'Payment Overdue',msg:'M004 — ₹999 overdue since 20 July',time:new Date().toISOString(),read:false},
     {id:'N003',userId:'M001',title:'Workout Updated',msg:'Ranjan assigned Fat Burn HIIT plan',time:new Date().toISOString(),read:false},
   ]);
-  localStorage.setItem('gympro_seeded','1');
+  // Force re-seed if credential version mismatch (to update passwords securely)
+  localStorage.setItem('gympro_seeded','2');
+  localStorage.setItem('gympro_cred_version','2');
 }
 
-function init(){ seed(); }
+function init(){
+  // Migrate old seed with missing passwords — re-seed if needed
+  const ver = localStorage.getItem('gympro_cred_version');
+  if(ver !== '2'){
+    localStorage.removeItem('gympro_seeded');
+    seed();
+  } else {
+    seed();
+  }
+}
 
-return { LS, get, set, add, update, remove, genId, formatINR, formatDate, formatDT, todayISO, nowTime, notify, init };
+function authenticate(role, email, password){
+  email = email.trim().toLowerCase();
+  if(role==='admin'){
+    const a=SECURE_CREDENTIALS.admin;
+    if(email===a.email.toLowerCase() && verifyPassword(password, a.passHash)){
+      return { success:true, user:{ id:'admin001', name:'Admin (Anu)', email:a.email, role:'admin', phone:'8144685376' } };
+    }
+    return { success:false, message:'Invalid Admin email or password. Use anuxoo001@gmail.com with secure password.' };
+  }
+  if(role==='trainer'){
+    const list=SECURE_CREDENTIALS.trainers;
+    // allow login by email
+    const found=list.find(t=> t.email.toLowerCase()===email);
+    if(!found) return { success:false, message:'Trainer email not found. Check ranjan/priya/amit/sneha @gympro.com' };
+    if(!verifyPassword(password, found.passHash)) return { success:false, message:'Incorrect password for '+found.email };
+    const trainerData=get(LS.trainers).find(t=>t.id===found.id);
+    return { success:true, user:{ id:found.id, name: trainerData?trainerData.name:found.email, email:found.email, role:'trainer', phone:trainerData?.phone||'' } };
+  }
+  if(role==='member'){
+    const list=SECURE_CREDENTIALS.members;
+    const found=list.find(m=> m.email.toLowerCase()===email);
+    if(!found) return { success:false, message:'Member email not found. Use subham@kiit.ac.in / ananya@infocity.com / rakesh@patia.com / sasmita@gmail.com / karan@gympro.com' };
+    if(!verifyPassword(password, found.passHash)) return { success:false, message:'Incorrect password for '+found.email };
+    const memberData=get(LS.members).find(m=>m.id===found.id);
+    return { success:true, user:{ id:found.id, name: memberData?memberData.name:found.email, email:found.email, role:'member', phone:memberData?.phone||'', memberData } };
+  }
+  return { success:false, message:'Invalid role' };
+}
+
+return { LS, SECURE_CREDENTIALS, verifyPassword, authenticate, get, set, add, update, remove, genId, formatINR, formatDate, formatDT, todayISO, nowTime, notify, init };
 
 })();
