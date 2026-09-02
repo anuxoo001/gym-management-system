@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gym Management System | SuuSri AI</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="loader">
+            <div class="loader-bar"></div>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <nav id="navbar" class="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">
+                <span class="logo-icon"><i class="fas fa-dumbbell"></i></span>
+                <span class="logo-text">Gym<span>Pro</span></span>
+            </a>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#programs" class="nav-link">Programs</a></li>
+                <li><a href="#trainers" class="nav-link">Trainers</a></li>
+                <li><a href="#membership" class="nav-link">Membership</a></li>
+                <li><a href="#facilities" class="nav-link">Facilities</a></li>
+                <li><a href="#testimonials" class="nav-link">Reviews</a></li>
+                <li><a href="#schedule" class="nav-link">Schedule</a></li>
+                <li><a href="#faq" class="nav-link">FAQ</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="nav-right">
+                <a href="#contact" class="btn btn-primary">Start Your Fitness Journey</a>
+                <div class="hamburger" id="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-bg">
+            <div class="hero-gradient"></div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="badge-dot"></span>
+                Welcome to GymPro
+            </div>
+            <h1 class="hero-title">
+                Transform Your <span class="highlight">Body</span> &<br>
+                <span class="highlight">Mind</span>
+            </h1>
+            <p class="hero-subtitle">
+                Join thousands who have transformed their lives with our expert training,
+                premium facilities, and proven results.
+            </p>
+            <div class="hero-buttons">
+                <a href="#membership" class="btn btn-primary btn-lg">Start Your Fitness Journey</a>
+                <a href="#about" class="btn btn-outline btn-lg">Learn More</a>
+            </div>
+            <div class="hero-stats">
+                <div class="stat">
+                    <span class="stat-number" data-count="5000">0</span>+
+                    <span class="stat-label">Members</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number" data-count="50">0</span>+
+                    <span class="stat-label">Classes</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number" data-count="15">0</span>+
+                    <span class="stat-label">Expert Trainers</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number" data-count="10">0</span>+
+                    <span class="stat-label">Years Exp</span>
+                </div>
+            </div>
+        </div>
+        <div class="hero-scroll">
+            <div class="scroll-arrow">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">About Us</span>
+                <h2 class="section-title">Your Fitness Journey Starts <span class="highlight">Here</span></h2>
+                <p class="section-desc">Founded with a mission to help people achieve their fitness goals through personalized training, world-class facilities, and a supportive community.</p>
+            </div>
+            <div class="about-grid">
+                <div class="about-image">
+                    <div class="about-img-wrapper">
+                        <div class="about-img-placeholder">
+                            <i class="fas fa-person-running"></i>
+                        </div>
+                        <div class="about-shape about-shape-1"></div>
+                        <div class="about-shape about-shape-2"></div>
+                    </div>
+                </div>
+                <div class="about-content">
+                    <h3 class="about-subtitle">We Are Passionate About Fitness</h3>
+                    <p>GymPro was established to provide a premium fitness experience that combines cutting-edge equipment, expert guidance, and a motivating environment. Our certified trainers create personalized programs tailored to your goals.</p>
+                    <div class="about-features">
+                        <div class="about-feature">
+                            <div class="feature-icon"><i class="fas fa-shield-halved"></i></div>
+                            <div>
+                                <h4>Certified Trainers</h4>
+                                <p>Professional coaches with years of experience</p>
+                            </div>
+                        </div>
+                        <div class="about-feature">
+                            <div class="feature-icon"><i class="fas fa-heart-pulse"></i></div>
+                            <div>
+                                <h4>Safe Environment</h4>
+                                <p>Sanitized equipment and clean facilities</p>
+                            </div>
+                        </div>
+                        <div class="about-feature">
+                            <div class="feature-icon"><i class="fas fa-clock"></i></div>
+                            <div>
+                                <h4>24/7 Access</h4>
+                                <p>Work out anytime that fits your schedule</p>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#contact" class="btn btn-primary">Join Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Programs Section -->
+    <section id="programs" class="programs">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Our Programs</span>
+                <h2 class="section-title">Training Programs <span class="highlight">Designed For You</span></h2>
+                <p class="section-desc">Choose from a variety of programs tailored to different fitness levels and goals.</p>
+            </div>
+            <div class="programs-grid">
+                <div class="program-card">
+                    <div class="program-icon"><i class="fas fa-fire"></i></div>
+                    <h3>HIIT Training</h3>
+                    <p>High-intensity interval training for maximum calorie burn and endurance.</p>
+                    <div class="program-details">
+                        <span><i class="fas fa-clock"></i> 45 min</span>
+                        <span><i class="fas fa-fire"></i> Advanced</span>
+                    </div>
+                </div>
+                <div class="program-card">
+                    <div class="program-icon"><i class="fas fa-dumbbell"></i></div>
+                    <h3>Bodybuilding</h3>
+                    <p>Split routines and progressive overload for muscle growth and strength.</p>
+                    <div class="program-details">
+                        <span><i class="fas fa-clock"></i> 60 min</span>
+                        <span><i class="fas fa-fire"></i> Intermediate</span>
+                    </div>
+                </div>
+                <div class="program-card">
+                    <div class="program-icon"><i class="fas fa-spa"></i></div>
+                    <h3>Yoga & Flexibility</h3>
+                    <p>Improve flexibility, balance, and mental wellness through yoga.</p>
+                    <div class="program-details">
+                        <span><i class="fas fa-clock"></i> 60 min</span>
+                        <span><i class="fas fa-fire"></i> Beginner</span>
+                    </div>
+                </div>
+                <div class="program-card">
+                    <div class="program-icon"><i class="fas fa-person-swimming"></i></div>
+                    <h3>CrossFit</h3>
+                    <p>Functional fitness combining strength, cardio, and agility.</p>
+                    <div class="program-details">
+                        <span><i class="fas fa-clock"></i> 50 min</span>
+                        <span><i class="fas fa-fire"></i> Advanced</span>
+                    </div>
+                </div>
+                <div class="program-card">
+                    <div class="program-icon"><i class="fas fa-person-running"></i></div>
+                    <h3>Cardio & Endurance</h3>
+                    <p>Boost cardiovascular health with running, cycling, and rowing.</p>
+                    <div class="program-details">
+                        <span><i class="fas fa-clock"></i> 40 min</span>
+                        <span><i class="fas fa-fire"></i> All Levels</span>
+                    </div>
+                </div>
+                <div class="program-card">
+                    <div class="program-icon"><i class="fas fa-balance-scale"></i></div>
+                    <h3>Weight Loss</h3>
+                    <p>Custom diet plans and fat-burning workouts for sustainable results.</p>
+                    <div class="program-details">
+                        <span><i class="fas fa-clock"></i> 55 min</span>
+                        <span><i class="fas fa-fire"></i> Beginner</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trainers Section -->
+    <section id="trainers" class="trainers">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Our Trainers</span>
+                <h2 class="section-title">Meet Our <span class="highlight">Experts</span></h2>
+                <p class="section-desc">Our certified trainers bring passion, knowledge, and dedication to help you reach your goals.</p>
+            </div>
+            <div class="trainers-grid">
+                <div class="trainer-card">
+                    <div class="trainer-img">
+                        <div class="trainer-img-placeholder"><i class="fas fa-person"></i></div>
+                        <div class="trainer-overlay">
+                            <div class="social-links">
+                                <a href="#"><i class="fab fa-instagram"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="trainer-info">
+                        <h3>Alex Johnson</h3>
+                        <p class="trainer-role">Head Strength Coach</p>
+                        <p class="trainer-bio">10+ years of experience in strength training and athletic performance.</p>
+                    </div>
+                </div>
+                <div class="trainer-card">
+                    <div class="trainer-img">
+                        <div class="trainer-img-placeholder"><i class="fas fa-person"></i></div>
+                        <div class="trainer-overlay">
+                            <div class="social-links">
+                                <a href="#"><i class="fab fa-instagram"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="trainer-info">
+                        <h3>Sarah Williams</h3>
+                        <p class="trainer-role">Yoga & Wellness Instructor</p>
+                        <p class="trainer-bio">Certified yoga therapist specializing in mindfulness and flexibility.</p>
+                    </div>
+                </div>
+                <div class="trainer-card">
+                    <div class="trainer-img">
+                        <div class="trainer-img-placeholder"><i class="fas fa-person"></i></div>
+                        <div class="trainer-overlay">
+                            <div class="social-links">
+                                <a href="#"><i class="fab fa-instagram"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="trainer-info">
+                        <h3>Mike Chen</h3>
+                        <p class="trainer-role">HIIT & CrossFit Coach</p>
+                        <p class="trainer-bio">Elite athlete turned coach with a passion for high-intensity training.</p>
+                    </div>
+                </div>
+                <div class="trainer-card">
+                    <div class="trainer-img">
+                        <div class="trainer-img-placeholder"><i class="fas fa-person"></i></div>
+                        <div class="trainer-overlay">
+                            <div class="social-links">
+                                <a href="#"><i class="fab fa-instagram"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="trainer-info">
+                        <h3>Emma Davis</h3>
+                        <p class="trainer-role">Nutrition & Weight Loss Specialist</p>
+                        <p class="trainer-bio">Sports nutritionist helping clients transform through diet and exercise.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Membership Section -->
+    <section id="membership" class="membership">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Membership Plans</span>
+                <h2 class="section-title">Choose Your <span class="highlight">Plan</span></h2>
+                <p class="section-desc">Flexible membership options designed for every fitness journey.</p>
+            </div>
+            <div class="membership-toggle">
+                <button class="toggle-btn active" data-period="monthly">Monthly</button>
+                <button class="toggle-btn" data-period="yearly">Yearly <span class="save-badge">Save 20%</span></button>
+            </div>
+            <div class="membership-grid">
+                <div class="membership-card">
+                    <div class="membership-badge basic">Basic</div>
+                    <h3>Starter</h3>
+                    <div class="price">$29<span>/mo</span></div>
+                    <ul class="membership-features">
+                        <li><i class="fas fa-check"></i> Gym Access</li>
+                        <li><i class="fas fa-check"></i> Locker Room</li>
+                        <li><i class="fas fa-check"></i> Free Weights</li>
+                        <li class="disabled"><i class="fas fa-times"></i> Group Classes</li>
+                        <li class="disabled"><i class="fas fa-times"></i> Personal Training</li>
+                        <li class="disabled"><i class="fas fa-times"></i> Nutrition Plan</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-outline">Get Started</a>
+                </div>
+                <div class="membership-card popular">
+                    <div class="membership-badge popular-badge">Most Popular</div>
+                    <h3>Pro</h3>
+                    <div class="price">$59<span>/mo</span></div>
+                    <ul class="membership-features">
+                        <li><i class="fas fa-check"></i> Gym Access</li>
+                        <li><i class="fas fa-check"></i> Locker Room</li>
+                        <li><i class="fas fa-check"></i> Free Weights</li>
+                        <li><i class="fas fa-check"></i> Group Classes</li>
+                        <li><i class="fas fa-check"></i> Personal Training</li>
+                        <li class="disabled"><i class="fas fa-times"></i> Nutrition Plan</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-primary">Get Started</a>
+                </div>
+                <div class="membership-card">
+                    <div class="membership-badge premium">Premium</div>
+                    <h3>Elite</h3>
+                    <div class="price">$89<span>/mo</span></div>
+                    <ul class="membership-features">
+                        <li><i class="fas fa-check"></i> Gym Access</li>
+                        <li><i class="fas fa-check"></i> Locker Room</li>
+                        <li><i class="fas fa-check"></i> Free Weights</li>
+                        <li><i class="fas fa-check"></i> Group Classes</li>
+                        <li><i class="fas fa-check"></i> Personal Training</li>
+                        <li><i class="fas fa-check"></i> Nutrition Plan</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-outline">Get Started</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Facilities Section -->
+    <section id="facilities" class="facilities">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Our Facilities</span>
+                <h2 class="section-title">World-Class <span class="highlight">Facilities</span></h2>
+                <p class="section-desc">Everything you need for an exceptional workout experience.</p>
+            </div>
+            <div class="facilities-grid">
+                <div class="facility-card">
+                    <div class="facility-img">
+                        <div class="facility-img-placeholder"><i class="fas fa-dumbbell"></i></div>
+                    </div>
+                    <div class="facility-content">
+                        <h3>Modern Equipment</h3>
+                        <p>State-of-the-art machines and free weights from top brands.</p>
+                    </div>
+                </div>
+                <div class="facility-card">
+                    <div class="facility-img">
+                        <div class="facility-img-placeholder"><i class="fas fa-person-swimming"></i></div>
+                    </div>
+                    <div class="facility-content">
+                        <h3>Olympic Pool</h3>
+                        <p>25-meter heated pool for swimming and water therapy.</p>
+                    </div>
+                </div>
+                <div class="facility-card">
+                    <div class="facility-img">
+                        <div class="facility-img-placeholder"><i class="fas fa-spa"></i></div>
+                    </div>
+                    <div class="facility-content">
+                        <h3>Sauna & Recovery</h3>
+                        <p>Relax and recover in our sauna and ice bath area.</p>
+                    </div>
+                </div>
+                <div class="facility-card">
+                    <div class="facility-img">
+                        <div class="facility-img-placeholder"><i class="fas fa-warehouse"></i></div>
+                    </div>
+                    <div class="facility-content">
+                        <h3>Functional Zone</h3>
+                        <p>Dedicated space for CrossFit, HIIT, and functional training.</p>
+                    </div>
+                </div>
+                <div class="facility-card">
+                    <div class="facility-img">
+                        <div class="facility-img-placeholder"><i class="fas fa-music"></i></div>
+                    </div>
+                    <div class="facility-content">
+                        <h3>Group Studio</h3>
+                        <p>High-energy studio for cycling, yoga, and dance classes.</p>
+                    </div>
+                </div>
+                <div class="facility-card">
+                    <div class="facility-img">
+                        <div class="facility-img-placeholder"><i class="fas fa-fan"></i></div>
+                    </div>
+                    <div class="facility-content">
+                        <h3>Cardio Deck</h3>
+                        <p>Floor-to-ceiling windows with treadmills, bikes, and rowers.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Success Stories</span>
+                <h2 class="section-title">What Our Members <span class="highlight">Say</span></h2>
+                <p class="section-desc">Real transformations and heartfelt reviews from our community.</p>
+            </div>
+            <div class="testimonial-slider">
+                <div class="testimonial-track">
+                    <div class="testimonial-card">
+                        <div class="testimonial-stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <p>"GymPro completely changed my life. The trainers are incredible and the community is supportive. I've never felt better!"</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar"><i class="fas fa-user"></i></div>
+                            <div>
+                                <strong>James Rodriguez</strong>
+                                <span>Lost 35 lbs in 6 months</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <p>"Best gym I've ever been to. The variety of classes keeps things exciting and the equipment is top-notch."</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar"><i class="fas fa-user"></i></div>
+                            <div>
+                                <strong>Maria Santos</strong>
+                                <span>Completed 500+ Classes</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <p>"As a beginner, I was nervous, but the staff made me feel welcome. Now I'm addicted to my workouts!"</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar"><i class="fas fa-user"></i></div>
+                            <div>
+                                <strong>David Kim</strong>
+                                <span>Transformed in 3 months</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <p>"The personalized training plans and nutrition guidance helped me break through plateaus I'd been stuck on for years."</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar"><i class="fas fa-user"></i></div>
+                            <div>
+                                <strong>Lisa Thompson</strong>
+                                <span>Gained 20 lbs muscle</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slider-controls">
+                    <button class="slider-btn" id="prevBtn"><i class="fas fa-arrow-left"></i></button>
+                    <div class="slider-dots" id="sliderDots"></div>
+                    <button class="slider-btn" id="nextBtn"><i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Schedule Section -->
+    <section id="schedule" class="schedule">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Class Schedule</span>
+                <h2 class="section-title">Today's <span class="highlight">Classes</span></h2>
+                <p class="section-desc">Find the perfect class to fit your schedule and fitness goals.</p>
+            </div>
+            <div class="schedule-grid">
+                <div class="schedule-item">
+                    <div class="schedule-time">6:00 AM</div>
+                    <div class="schedule-detail">
+                        <h4>Morning Yoga</h4>
+                        <span>Beginner Friendly</span>
+                    </div>
+                    <div class="schedule-instructor">
+                        <i class="fas fa-user"></i> Sarah W.
+                    </div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">7:30 AM</div>
+                    <div class="schedule-detail">
+                        <h4>HIIT Bootcamp</h4>
+                        <span>High Intensity</span>
+                    </div>
+                    <div class="schedule-instructor">
+                        <i class="fas fa-user"></i> Mike C.
+                    </div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">9:00 AM</div>
+                    <div class="schedule-detail">
+                        <h4>Bodybuilding</h4>
+                        <span>Upper Body Focus</span>
+                    </div>
+                    <div class="schedule-instructor">
+                        <i class="fas fa-user"></i> Alex J.
+                    </div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">12:00 PM</div>
+                    <div class="schedule-detail">
+                        <h4>Lunch Spin</h4>
+                        <span>Cardio & Endurance</span>
+                    </div>
+                    <div class="schedule-instructor">
+                        <i class="fas fa-user"></i> Emma D.
+                    </div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">5:00 PM</div>
+                    <div class="schedule-detail">
+                        <h4>CrossFit</h4>
+                        <span>Advanced</span>
+                    </div>
+                    <div class="schedule-instructor">
+                        <i class="fas fa-user"></i> Mike C.
+                    </div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">6:30 PM</div>
+                    <div class="schedule-detail">
+                        <h4>Zumba Dance</h4>
+                        <span>Fun & Energetic</span>
+                    </div>
+                    <div class="schedule-instructor">
+                        <i class="fas fa-user"></i> Sarah W.
+                    </div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">7:30 PM</div>
+                    <div class="schedule-detail">
+                        <h4>Powerlifting</h4>
+                        <span>Strength Focus</span>
+                    </div>
+                    <div class="schedule-instructor">
+                        <i class="fas fa-user"></i> Alex J.
+                    </div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">8:30 PM</div>
+                    <div class="schedule-detail">
+                        <h4>Evening Yoga</h4>
+                        <span>Stretch & Relax</span>
+                    </div>
+                    <div class="schedule-instructor">
+                        <i class="fas fa-user"></i> Emma D.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="faq">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">FAQ</span>
+                <h2 class="section-title">Frequently <span class="highlight">Asked</span> Questions</h2>
+                <p class="section-desc">Everything you need to know about joining GymPro.</p>
+            </div>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>What equipment is available at GymPro?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>We have state-of-the-art cardio machines, free weights, resistance machines, functional training equipment, Olympic lifting platforms, and more. Our equipment is regularly maintained and upgraded.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Is there a guest pass for first-time visitors?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Yes! We offer a free first visit for new members. Just bring a valid ID and a towel, and our staff will give you a tour and help you get started.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Can I cancel my membership anytime?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Absolutely. You can cancel your membership at any time with a 30-day written notice. No hidden fees or long-term commitments required.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Are personal training sessions included?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Personal training is available on all Pro and Elite plans. Starter members can purchase session packages. Our trainers will create a customized program based on your goals.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>What are the operating hours?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Monday – Friday: 5:00 AM – 11:00 PM<br>Saturday – Sunday: 6:00 AM – 9:00 PM. Our 24/7 keycard access is available for all members.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Do you offer corporate or group memberships?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Yes, we offer special corporate rates for companies and group discounts for friends and family. Contact our team for customized packages.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Contact Us</span>
+                <h2 class="section-title">Ready to <span class="highlight">Transform?</span></h2>
+                <p class="section-desc">Book your first free session and start your fitness journey today.</p>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <div class="info-item">
+                        <div class="info-icon"><i class="fas fa-location-dot"></i></div>
+                        <div>
+                            <h4>Visit Our Gym</h4>
+                            <p>123 Fitness Avenue, Health City, HC 10001</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon"><i class="fas fa-phone"></i></div>
+                        <div>
+                            <h4>Call Us</h4>
+                            <p>+1 (555) 123-4567</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon"><i class="fas fa-envelope"></i></div>
+                        <div>
+                            <h4>Email Us</h4>
+                            <p>info@gympro.com</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon"><i class="fas fa-clock"></i></div>
+                        <div>
+                            <h4>Working Hours</h4>
+                            <p>Mon – Fri: 5AM – 11PM</p>
+                        </div>
+                    </div>
+                    <div class="social-links-inline">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="contact-form-wrapper">
+                    <form id="contactForm" class="contact-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name">Full Name</label>
+                                <input type="text" id="name" name="name" placeholder="John Doe" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" placeholder="john@example.com" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" placeholder="+1 (555) 000-0000">
+                        </div>
+                        <div class="form-group">
+                            <label for="goal">Fitness Goal</label>
+                            <select id="goal" name="goal" required>
+                                <option value="">Select your goal</option>
+                                <option value="weight-loss">Weight Loss</option>
+                                <option value="muscle-gain">Muscle Gain</option>
+                                <option value="strength">Strength Training</option>
+                                <option value="flexibility">Flexibility & Yoga</option>
+                                <option value="general">General Fitness</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="4" placeholder="Tell us about your fitness journey..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-lg">Start Your Fitness Journey</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#" class="nav-logo">
+                        <span class="logo-icon"><i class="fas fa-dumbbell"></i></span>
+                        <span class="logo-text">Gym<span>Pro</span></span>
+                    </a>
+                    <p>Empowering healthier lives through fitness, community, and expert guidance since day one.</p>
+                    <div class="footer-social">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#programs">Programs</a></li>
+                        <li><a href="#trainers">Trainers</a></li>
+                        <li><a href="#membership">Membership</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="#facilities">Facilities</a></li>
+                        <li><a href="#schedule">Class Schedule</a></li>
+                        <li><a href="#contact">Personal Training</a></li>
+                        <li><a href="#contact">Nutrition Plan</a></li>
+                        <li><a href="#faq">Support</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Refund Policy</a></li>
+                        <li><a href="#">Cookie Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 GymPro. All rights reserved. Built with <i class="fas fa-heart"></i> by SuuSri AI</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll Progress -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- Back to Top -->
+    <button class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <span id="toastMessage"></span>
+    </div>
+
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <!-- Main JS -->
+    <script src="js/script.js"></script>
+</body>
+</html>
