@@ -12,9 +12,11 @@
 | Technology | Purpose |
 |------------|---------|
 | HTML5 | Semantic structure, SEO meta tags |
-| CSS3 | Flexbox/Grid, custom properties, professional dark theme |
-| JavaScript (ES6+) | DOM logic, form validation, BMI, gallery, etc. |
+| CSS3 | Flexbox/Grid, custom properties, professional dark theme (landing + dashboard) |
+| JavaScript (ES6+) | DOM logic, localStorage DB, QR, AI rules, invoice, charts |
 | GSAP + ScrollTrigger 3.12.5 | Hero entrances, scroll reveals, parallax, counters |
+| Chart.js 4.x | Analytics, progress, revenue charts |
+| jsPDF 2.5.1 + QRServer API | Invoice PDF, QR generation |
 | Font Awesome 6.5.0 | Icons |
 | Google Fonts (Inter + Oswald) | Typography |
 
@@ -109,8 +111,44 @@ No build tools required.
 - Tablet 768–1024px: 2-col grids
 - Mobile <768px: Single col, hamburger, stacked, floating buttons icon-only, gallery 2→1 col
 
+## Gym Management System — Role Based Dashboards (NEW)
+
+**Login:** `login.html` → Choose Admin / Trainer / Member → Demo auto-fill → `dashboard.html?role=...`
+- **Admin:** anuxoo001@gmail.com (full access) — Patia, Bhubaneswar
+- **Trainer:** Select from 4 trainers (Ranjan, Priya, Amit, Sneha)
+- **Member:** Select from 5 members (M001–M005) — QR & progress demo
+
+| Role | Sidebar Modules |
+|------|-----------------|
+| **Admin** | Members, Trainers, Payments, QR Attendance, Reports, Settings — with Equipment Management |
+| **Trainer** | My Members, Workout Plans, Diet Plans, Appointments, Progress |
+| **Member** | My Profile, Workout, Diet, Attendance, Payments, Progress (+ Goals), Appointment Booking |
+
+**15 Professional Features Implemented:**
+
+1. 👥 **Member Management** — Admin CRUD (ID, name, phone, plan ₹999/₹1999/₹3499, trainer, status) — `admin-members`
+2. 👨‍🏫 **Trainer Management** — Admin CRUD (specialty, exp, cert) — `admin-trainers`
+3. 💳 **Membership & Payment Management** — Record payment, status paid/pending/overdue, invoiceNo, CSV export — `admin-payments` + `member-payments`
+4. 📱 **QR-Based Attendance** — Member shows QR (api.qrserver.com), admin scans Member ID → mark present, today + history — `admin-attendance` + `member-attendance`
+5. 🏋️ **Workout Plan Management** — Trainer creates/assigns plans with exercises (sets×reps) — `trainer-workouts` → `member-workout`
+6. 🥗 **Diet & Nutrition Management** — Trainer creates diet (calories, Odia meals) — `trainer-diets` → `member-diet`
+7. 📊 **Fitness Progress Tracking** — Log weight/body fat, Chart.js line chart — `trainer-progress` + `member-progress`
+8. 📅 **Appointment Booking** — Member books with trainer (date/time/type), trainer confirms/pending — `member-appointments` ↔ `trainer-appointments`
+9. 🔔 **Email & In-App Notifications** — Bell icon, unread dot, GymPro.notify() for all actions + Email toasts (anuxoo001@gmail.com) — all dashboards
+10. 📈 **Admin Analytics Dashboard** — KPIs, revenue bar, member growth line, plan doughnut, report summary — `admin-overview` + `admin-reports`
+11. 🏆 **Fitness Goals & Achievements** — Member adds goals (target/current/deadline), progress bar, +1 update, 🏆 on 100% — `member-progress`
+12. 🧰 **Gym Equipment Management** — Admin CRUD (name, category, qty, condition working/maintenance, last maintenance) — `admin-equipment`
+13. 🤖 **AI Workout & Diet Recommendations** — Rule-based: goal+weight → workout+diet (HIIT/muscle/balanced), Odia diet option, Apply to account — `member-overview` + trainer AI buttons
+14. 📄 **Automatic Invoice & Progress Report** — Invoice modal (GST inclusive, print/PDF via window.print), Progress report PDF (weights, goals, trainer remark) — `admin-payments` + `member-progress`
+
+**Data:** All in `localStorage` (`gympro_*`) — seed data for Bhubaneswar (Patia) — QR uses `https://api.qrserver.com/v1/create-qr-code/`
+
+**How to Demo:**
+1. Open `login.html` → Click **Member Demo** → Login → `member-overview` shows QR, AI box, goals
+2. Click **Trainer Demo** → `trainer-workouts` → AI Generate → Assign → Member sees it instantly (localStorage)
+3. Click **Admin Demo** → `admin-payments` → Record Payment ₹1,999 → View Invoice → Print
+
 ## Developer
 - **Developer:** Anu (anuxoo001@gmail.com) — SuuSri AI Internship
-- **Date:** September 2025 (Updated: Bhubaneswar Professional Edition)
-- **Phone:** 8144685376
-- **Location:** Bhubaneswar, Odisha
+- **Date:** September 2025 (Professional Bhubaneswar + Full Management System Edition)
+- **Phone:** 8144685376 — Patia, Bhubaneswar, Odisha 751024
