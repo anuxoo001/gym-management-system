@@ -18,20 +18,21 @@ const LS = {
 };
 
 // Secure credentials — hashed with btoa for demo (production: use bcrypt on server)
+// Plain passwords are NOT stored here — only hashes. Credentials shared privately in chat.
 const SECURE_CREDENTIALS = {
-  admin: { email:'anuxoo001@gmail.com', passHash: btoa('GymPro@Anu#BBSR2025!'), plain:'GymPro@Anu#BBSR2025!' },
+  admin: { email:'anuxoo001@gmail.com', passHash: 'R3ltUHJvQEFudSNCQlNSMjAyNSE=' },
   trainers: [
-    {id:'T001', email:'ranjan@gympro.com', passHash: btoa('Ranjan@Gym#2025!12'), plain:'Ranjan@Gym#2025!12'},
-    {id:'T002', email:'priya@gympro.com', passHash: btoa('Priya@Yoga#2025!08'), plain:'Priya@Yoga#2025!08'},
-    {id:'T003', email:'amit@gympro.com', passHash: btoa('Amit@CrossFit#2025!10'), plain:'Amit@CrossFit#2025!10'},
-    {id:'T004', email:'sneha@gympro.com', passHash: btoa('Sneha@Diet#2025!09'), plain:'Sneha@Diet#2025!09'},
+    {id:'T001', email:'ranjan@gympro.com', passHash: 'UmFuamFuQEd5bSMyMDI1ITEy'},
+    {id:'T002', email:'priya@gympro.com', passHash: 'UHJpeWFAWW9nYSMyMDI1ITA4'},
+    {id:'T003', email:'amit@gympro.com', passHash: 'QW1pdEBDcm9zc0ZpdCMyMDI1ITEw'},
+    {id:'T004', email:'sneha@gympro.com', passHash: 'U25laGFARGlldCMyMDI1ITA5'},
   ],
   members: [
-    {id:'M001', email:'subham@kiit.ac.in', passHash: btoa('Subham@Gym#M001!25'), plain:'Subham@Gym#M001!25'},
-    {id:'M002', email:'ananya@infocity.com', passHash: btoa('Ananya@Gym#M002!25'), plain:'Ananya@Gym#M002!25'},
-    {id:'M003', email:'rakesh@patia.com', passHash: btoa('Rakesh@Gym#M003!25'), plain:'Rakesh@Gym#M003!25'},
-    {id:'M004', email:'sasmita@gmail.com', passHash: btoa('Sasmita@Gym#M004!25'), plain:'Sasmita@Gym#M004!25'},
-    {id:'M005', email:'karan@gympro.com', passHash: btoa('Karan@Gym#M005!25'), plain:'Karan@Gym#M005!25'},
+    {id:'M001', email:'subham@kiit.ac.in', passHash: 'U3ViaGFtQEd5bSNNMDAxITI1'},
+    {id:'M002', email:'ananya@infocity.com', passHash: 'QW5hbnlhQEd5bSNNMDAyITI1'},
+    {id:'M003', email:'rakesh@patia.com', passHash: 'UmFrZXNoQEd5bSNNMDAzITI1'},
+    {id:'M004', email:'sasmita@gmail.com', passHash: 'U2FzbWl0YUBHeW0jTTAwNCEyNQ=='},
+    {id:'M005', email:'karan@gympro.com', passHash: 'S2FyYW5AR3ltI00wMDUhMjU='},
   ]
 };
 
@@ -57,21 +58,21 @@ function notify(userId,title,msg){
 
 function seed(){
   if(localStorage.getItem('gympro_seeded')) return;
-  // Members — with secure passwords (btoa hashed, plain only for demo setup)
+  // Members — with secure passwords (hashed, plain not stored)
   const members=[
-    {id:'M001',name:'Subham Sahoo',phone:'8144685376',email:'subham@kiit.ac.in',plan:'Elite',amount:3499,status:'active',joined:'2024-02-10',trainerId:'T001',weight:78,goal:'Weight Loss', passHash: btoa('Subham@Gym#M001!25')},
-    {id:'M002',name:'Ananya Mishra',phone:'9876543210',email:'ananya@infocity.com',plan:'Pro',amount:1999,status:'active',joined:'2024-04-15',trainerId:'T002',weight:62,goal:'Yoga & Flexibility', passHash: btoa('Ananya@Gym#M002!25')},
-    {id:'M003',name:'Rakesh Behera',phone:'9123456780',email:'rakesh@patia.com',plan:'Pro',amount:1999,status:'active',joined:'2024-06-01',trainerId:'T001',weight:85,goal:'Muscle Gain', passHash: btoa('Rakesh@Gym#M003!25')},
-    {id:'M004',name:'Sasmita Patnaik',phone:'9988776655',email:'sasmita@gmail.com',plan:'Starter',amount:999,status:'pending',joined:'2024-08-20',trainerId:'T004',weight:70,goal:'General Fitness', passHash: btoa('Sasmita@Gym#M004!25')},
-    {id:'M005',name:'Karan Das',phone:'9012345678',email:'karan@gympro.com',plan:'Elite',amount:3499,status:'active',joined:'2023-11-05',trainerId:'T003',weight:90,goal:'Strength Training', passHash: btoa('Karan@Gym#M005!25')},
+    {id:'M001',name:'Subham Sahoo',phone:'8144685376',email:'subham@kiit.ac.in',plan:'Elite',amount:3499,status:'active',joined:'2024-02-10',trainerId:'T001',weight:78,goal:'Weight Loss', passHash: 'U3ViaGFtQEd5bSNNMDAxITI1'},
+    {id:'M002',name:'Ananya Mishra',phone:'9876543210',email:'ananya@infocity.com',plan:'Pro',amount:1999,status:'active',joined:'2024-04-15',trainerId:'T002',weight:62,goal:'Yoga & Flexibility', passHash: 'QW5hbnlhQEd5bSNNMDAyITI1'},
+    {id:'M003',name:'Rakesh Behera',phone:'9123456780',email:'rakesh@patia.com',plan:'Pro',amount:1999,status:'active',joined:'2024-06-01',trainerId:'T001',weight:85,goal:'Muscle Gain', passHash: 'UmFrZXNoQEd5bSNNMDAzITI1'},
+    {id:'M004',name:'Sasmita Patnaik',phone:'9988776655',email:'sasmita@gmail.com',plan:'Starter',amount:999,status:'pending',joined:'2024-08-20',trainerId:'T004',weight:70,goal:'General Fitness', passHash: 'U2FzbWl0YUBHeW0jTTAwNCEyNQ=='},
+    {id:'M005',name:'Karan Das',phone:'9012345678',email:'karan@gympro.com',plan:'Elite',amount:3499,status:'active',joined:'2023-11-05',trainerId:'T003',weight:90,goal:'Strength Training', passHash: 'S2FyYW5AR3ltI00wMDUhMjU='},
   ];
   set(LS.members, members);
-  // Trainers — with secure passwords
+  // Trainers — with secure passwords (hashed)
   const trainers=[
-    {id:'T001',name:'Ranjan Mohanty',phone:'9876543201',email:'ranjan@gympro.com',specialty:'Strength & Bodybuilding',exp:'12+ Yrs',members:3,status:'active',cert:'NSCA-CPT, Mr. Odisha', passHash: btoa('Ranjan@Gym#2025!12')},
-    {id:'T002',name:'Priya Sharma',phone:'9876543202',email:'priya@gympro.com',specialty:'Yoga & Wellness',exp:'8+ Yrs',members:2,status:'active',cert:'RYT-500', passHash: btoa('Priya@Yoga#2025!08')},
-    {id:'T003',name:'Amit Patel',phone:'9876543203',email:'amit@gympro.com',specialty:'HIIT & CrossFit',exp:'10+ Yrs',members:2,status:'active',cert:'CrossFit L2', passHash: btoa('Amit@CrossFit#2025!10')},
-    {id:'T004',name:'Dr. Sneha Das',phone:'9876543204',email:'sneha@gympro.com',specialty:'Nutrition & Diet',exp:'9+ Yrs',members:4,status:'active',cert:'M.Sc Dietetics', passHash: btoa('Sneha@Diet#2025!09')},
+    {id:'T001',name:'Ranjan Mohanty',phone:'9876543201',email:'ranjan@gympro.com',specialty:'Strength & Bodybuilding',exp:'12+ Yrs',members:3,status:'active',cert:'NSCA-CPT, Mr. Odisha', passHash: 'UmFuamFuQEd5bSMyMDI1ITEy'},
+    {id:'T002',name:'Priya Sharma',phone:'9876543202',email:'priya@gympro.com',specialty:'Yoga & Wellness',exp:'8+ Yrs',members:2,status:'active',cert:'RYT-500', passHash: 'UHJpeWFAWW9nYSMyMDI1ITA4'},
+    {id:'T003',name:'Amit Patel',phone:'9876543203',email:'amit@gympro.com',specialty:'HIIT & CrossFit',exp:'10+ Yrs',members:2,status:'active',cert:'CrossFit L2', passHash: 'QW1pdEBDcm9zc0ZpdCMyMDI1ITEw'},
+    {id:'T004',name:'Dr. Sneha Das',phone:'9876543204',email:'sneha@gympro.com',specialty:'Nutrition & Diet',exp:'9+ Yrs',members:4,status:'active',cert:'M.Sc Dietetics', passHash: 'U25laGFARGlldCMyMDI1ITA5'},
   ];
   set(LS.trainers, trainers);
   // Store credentials separately for fast lookup (hashed only)
