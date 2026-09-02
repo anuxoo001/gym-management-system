@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 280" width="260" height="280" role="img" aria-label="Suusri AI Lotus Icon">
+<defs>
+  <linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%">
+    <stop offset="0%" stop-color="#FFF8DC"/><stop offset="50%" stop-color="#FFD700"/><stop offset="100%" stop-color="#8C6A00"/>
+  </linearGradient>
+  <radialGradient id="glow" cx="50%" cy="65%" r="60%">
+    <stop offset="0%" stop-color="#FFD700" stop-opacity="0.9"/><stop offset="100%" stop-color="#8C6A00" stop-opacity="0"/>
+  </radialGradient>
+  <filter id="gl"><feDropShadow dx="0" dy="3" stdDeviation="6" flood-color="#FFB700" flood-opacity="0.6"/></filter>
+</defs>
+<g transform="translate(130,145)" filter="url(#gl)">
+  <ellipse cx="0" cy="26" rx="82" ry="72" fill="url(#glow)" opacity="0.35"/>
+  <path d="M 0,-96 C -22,-71 -28,-41 -18,-11 C -10,9 10,9 18,-11 C 28,-41 22,-71 0,-96 Z" fill="#FFFEF7" stroke="url(#g1)" stroke-width="4"/>
+  <path d="M -22,-73 C -38,-53 -42,-25 -28,-1 C -18,13 -8,11 0,-9 C 4,-29 -6,-56 -22,-73 Z" fill="#FFFEF7" stroke="url(#g1)" stroke-width="3.2"/>
+  <path d="M 22,-73 C 38,-53 42,-25 28,-1 C 18,13 8,11 0,-9 C -4,-29 6,-56 22,-73 Z" fill="#FFFEF7" stroke="url(#g1)" stroke-width="3.2"/>
+  <path d="M -45,-49 C -60,-31 -62,-5 -42,15 C -30,25 -16,19 -8,1 C -6,-19 -24,-37 -45,-49 Z" fill="#FFFDF5" stroke="url(#g1)" stroke-width="3"/>
+  <path d="M 45,-49 C 60,-31 62,-5 42,15 C 30,25 16,19 8,1 C 6,-19 24,-37 45,-49 Z" fill="#FFFDF5" stroke="url(#g1)" stroke-width="3"/>
+  <path d="M -58,-19 C -72,-3 -70,19 -50,33 C -36,39 -22,31 -16,15 C -16,-7 -36,-15 -58,-19 Z" fill="#FFFDF5" stroke="url(#g1)" stroke-width="2.8"/>
+  <path d="M 58,-19 C 72,-3 70,19 50,33 C 36,39 22,31 16,15 C 16,-7 36,-15 58,-19 Z" fill="#FFFDF5" stroke="url(#g1)" stroke-width="2.8"/>
+  <path d="M -52,11 C -68,21 -66,39 -48,47 C -34,51 -22,41 -16,27 C -16,15 -34,9 -52,11 Z" fill="#FFFEF7" stroke="url(#g1)" stroke-width="2.6"/>
+  <path d="M 52,11 C 68,21 66,39 48,47 C 34,51 22,41 16,27 C 16,15 34,9 52,11 Z" fill="#FFFEF7" stroke="url(#g1)" stroke-width="2.6"/>
+  <path d="M -28,31 C -36,41 -34,53 -22,59 C -14,61 -6,55 -2,43 C -4,33 -18,27 -28,31 Z" fill="#FFFEF7" stroke="url(#g1)" stroke-width="2.4"/>
+  <path d="M 28,31 C 36,41 34,53 22,59 C 14,61 6,55 2,43 C 4,33 18,27 28,31 Z" fill="#FFFEF7" stroke="url(#g1)" stroke-width="2.4"/>
+  <path d="M 0,37 C -8,47 -6,59 0,65 C 6,59 8,47 0,37 Z" fill="#FFFEF7" stroke="url(#g1)" stroke-width="2.4"/>
+  <g stroke="#D4A017" stroke-width="1.5" fill="none" stroke-linecap="round"><path d="M 0,-18 L 0,-62"/><path d="M 0,-52 L -10,-52 L -10,-42"/><path d="M 0,-45 L 10,-45 L 10,-36"/><path d="M -8,-18 L -8,-38 L -14,-38 L -14,-28"/><path d="M 8,-18 L 8,-38 L 14,-38 L 14,-28"/><path d="M -8,-30 L -4,-30 L -4,-22"/><path d="M 8,-30 L 4,-30 L 4,-22"/></g>
+  <g fill="url(#g1)" stroke="#8C6A00" stroke-width="0.8"><circle cx="0" cy="-62" r="5"/><circle cx="-14" cy="-38" r="3.2"/><circle cx="14" cy="-32" r="3.2"/><circle cx="-14" cy="-28" r="2.7"/><circle cx="14" cy="-28" r="2.7"/><circle cx="-4" cy="-22" r="2.7"/><circle cx="4" cy="-22" r="2.7"/></g>
+  <circle cx="0" cy="27" r="7.5" fill="#FFD700"/><circle cx="0" cy="27" r="3.2" fill="#FFFDE7"/>
+  <g fill="#FFD700" opacity="0.9"><circle cx="-68" cy="-39" r="2.3"/><circle cx="68" cy="-39" r="2.3"/><circle cx="-78" cy="-9" r="2.6"/><circle cx="78" cy="-9" r="2.6"/><circle cx="-48" cy="-93" r="1.7"/><circle cx="48" cy="-93" r="1.7"/></g>
+</g>
+</svg>

@@ -421,8 +421,8 @@ function showInvoice(paymentId){
   if(!p) return;
   const html=`
     <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid #111;padding-bottom:12px">
-      <div><h2 style="color:#ff4d00;margin:0">GymPro</h2><small>Bhubaneswar • Patia, Near KIIT, 751024</small><br><small>+91 81446 85376 • anuxoo001@gmail.com</small><br><small>GSTIN: 21ABCDE1234F1Z5</small></div>
-      <div style="text-align:right"><h3 style="margin:0">INVOICE</h3><strong>${p.invoice}</strong><br><small>${GymPro.formatDate(p.date)}</small><br><span class="status ${p.status}" style="display:inline-block;margin-top:6px">${p.status.toUpperCase()}</span></div>
+      <div style="display:flex;gap:12px;align-items:center"><img src="images/suusri-ai-icon.svg" alt="Suusri AI" style="height:42px;width:auto" onerror="this.style.display='none'"><div><h2 style="color:#ff4d00;margin:0;display:flex;align-items:center;gap:8px">GymPro <span style="font-size:0.55rem;background:#0a0a0f;color:#FFD700;padding:2px 6px;border-radius:4px;letter-spacing:1px">POWERED BY SUUSRI AI</span></h2><small>Bhubaneswar • Patia, Near KIIT, 751024</small><br><small>+91 81446 85376 • anuxoo001@gmail.com</small><br><small>GSTIN: 21ABCDE1234F1Z5</small></div></div>
+      <div style="text-align:right"><img src="images/suusri-ai-logo.svg" alt="Suusri AI" style="height:28px;width:auto;max-width:160px;object-fit:contain;margin-bottom:6px;display:block;margin-left:auto" onerror="this.style.display='none'"><h3 style="margin:0">INVOICE</h3><strong>${p.invoice}</strong><br><small>${GymPro.formatDate(p.date)}</small><br><span class="status ${p.status}" style="display:inline-block;margin-top:6px">${p.status.toUpperCase()}</span></div>
     </div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:16px 0">
       <div><strong>Bill To:</strong><br>${p.memberName}<br>${p.memberId}<br>Patia, Bhubaneswar</div>
@@ -435,7 +435,7 @@ function showInvoice(paymentId){
       <tr style="background:#fff7f0"><td style="padding:8px;border:1px solid #ddd"><strong>Total Paid</strong></td><td style="padding:8px;text-align:right;border:1px solid #ddd"><strong>${GymPro.formatINR(p.amount)}</strong></td></tr>
     </table>
     <p style="font-size:0.8rem;color:#555;margin-top:12px">Thank you for choosing GymPro Bhubaneswar! This is computer generated invoice. For queries call 81446 85376 or mail anuxoo001@gmail.com</p>
-    <p style="font-size:0.7rem;color:#888;text-align:center;margin-top:16px">Invoice generated automatically — GymPro Management System • Patia, Bhubaneswar</p>
+    <p style="font-size:0.7rem;color:#888;text-align:center;margin-top:16px;display:flex;align-items:center;justify-content:center;gap:6px"><img src="images/suusri-ai-icon.svg" alt="" style="height:14px;width:auto" onerror="this.style.display='none'"> Invoice generated automatically — GymPro Management System • Powered by Suusri AI • Patia, Bhubaneswar</p>
   `;
   document.getElementById('invoiceContent').innerHTML=html;
   openModal('invoiceModal');
